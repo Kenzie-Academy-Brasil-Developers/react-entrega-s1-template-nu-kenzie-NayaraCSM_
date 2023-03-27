@@ -1,11 +1,12 @@
 import { CardList } from "./CardList";
+import styles from './styles.module.css';
 
 export const List = ({ infoList, removeCardFromList}) => {
     return(
-        <>
-            <h2>Resumo financeiro</h2>
+        <section>
+            <h2 className={styles.list_title}>Resumo financeiro</h2>
             {infoList.length > 0 ? (
-                <ul>
+                <ul className={styles.list}>
                     {infoList.map((card) => {
                         return(
                            <CardList
@@ -17,8 +18,8 @@ export const List = ({ infoList, removeCardFromList}) => {
                     })}
                 </ul>
             ) : (
-                <p>Você ainda não possui nenhum lançamento</p>
+                <p className={styles.list_empty}>Você ainda não possui nenhum lançamento</p>
             )}
-        </>
+        </section>
     );
 };

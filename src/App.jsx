@@ -7,7 +7,6 @@ import { List } from './components/List';
 
 function App() {
   const [infoList, setInfoList] = useState([]);
-  const [moneySum, setMoneySum] = useState([]);
 
   const types =[
     {
@@ -20,14 +19,14 @@ function App() {
     },
   ];
 
-      const totalValue = infoList.reduce((accumulator, currentValue) => {
-      if(currentValue.typeValue === 'despesa'){
-        return accumulator - Number(currentValue.money)
-      } 
-      else {
-        return accumulator + Number(currentValue.money)
-      }
-    }, 0);
+  const totalValue = infoList.reduce((accumulator, currentValue) => {
+    if(currentValue.typeValue === 'despesa'){
+      return accumulator - Number(currentValue.money)
+    } 
+    else {
+      return accumulator + Number(currentValue.money)
+    }
+  }, 0);
 
   const addInfoToCardList = (formData) => {
     const newCard = { ...formData, id: uuidv4(), value: Number(formData.value)};
@@ -41,17 +40,13 @@ function App() {
 
   return (
     <DefaultTemplate>
-      <section className='formContainer'>
-        <Form types={types} addInfoToCardList={addInfoToCardList}/>
-      </section>
-      <section className='totalMoneyContainer'>
-        <TotalMoney totalValue={totalValue} infoList={infoList}/>
-      </section>
-      <section className='listContainer'>
+        <div className='container'>
+          <Form types={types} addInfoToCardList={addInfoToCardList}/>
+          <TotalMoney totalValue={totalValue} infoList={infoList}/>
+        </div>
         <List infoList={infoList} removeCardFromList={removeCardFromList}/>
-      </section>
     </DefaultTemplate>
   )
 }
 
-export default App
+export default App;

@@ -1,0 +1,6 @@
+@media(min-width: 800px){
+    main{
+        display: flex;
+        justify-content: space-between;
+    }
+}
