@@ -1,11 +1,11 @@
-import styles from './styles.module.css';
+import { StyledFooter } from './style';
 
 export const Footer = () => {
-    return (
-        <>
-            <footer className={styles.footer}>
-                <p>© 2023 Nayara CSM, Inc.</p>
-            </footer>
-        </>
-    );
- };
+  return (
+    <StyledFooter>
+      <footer>
+        <p>© 2023 Nayara CSM, Inc.</p>
+      </footer>
+    </StyledFooter>
+  );
+};

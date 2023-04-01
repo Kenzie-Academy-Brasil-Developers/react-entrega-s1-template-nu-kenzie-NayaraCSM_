@@ -1,52 +1,22 @@
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { DefaultTemplate } from './template/DefaultTemplate';
-import { Form } from './components/Form';
-import { TotalMoney } from './components/TotalMoney';
-import { List } from './components/List';
+import React, { useState } from 'react';
+import { LandingPage } from './pages/LandingPage';
+import { HomePage } from './pages/HomePage';
+import { GlobalStyle } from './styles/globalStyles';
+import './styles/reset.css';
 
-function App() {
-  const [infoList, setInfoList] = useState([]);
-
-  const types =[
-    {
-      slug: 'entrada',
-      label: 'Entrada',
-    },
-    {
-      slug: 'despesa',
-      label: 'Despesa',
-    },
-  ];
-
-  const totalValue = infoList.reduce((accumulator, currentValue) => {
-    if(currentValue.typeValue === 'despesa'){
-      return accumulator - Number(currentValue.money)
-    } 
-    else {
-      return accumulator + Number(currentValue.money)
-    }
-  }, 0);
-
-  const addInfoToCardList = (formData) => {
-    const newCard = { ...formData, id: uuidv4(), value: Number(formData.value)};
-    setInfoList([...infoList, newCard]);
-  };
-
-  const removeCardFromList = (cardId) => {
-    const newCardList = infoList.filter((card) => card.id !== cardId);
-    setInfoList(newCardList);
-  }
+const App = () => {
+  const [login, setLogin] = useState(false);
 
   return (
-    <DefaultTemplate>
-        <div className='container'>
-          <Form types={types} addInfoToCardList={addInfoToCardList}/>
-          <TotalMoney totalValue={totalValue} infoList={infoList}/>
-        </div>
-        <List infoList={infoList} removeCardFromList={removeCardFromList}/>
-    </DefaultTemplate>
-  )
-}
+    <>
+      <GlobalStyle />
+      {login ? (
+        <HomePage setLogin={setLogin} />
+      ) : (
+        <LandingPage setLogin={setLogin} />
+      )}
+    </>
+  );
+};
 
 export default App;

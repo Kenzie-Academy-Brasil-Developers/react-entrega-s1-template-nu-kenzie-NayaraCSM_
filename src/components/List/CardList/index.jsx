@@ -1,16 +1,23 @@
-import styles from './styles.module.css';
+import { StyledCardList } from './style';
 
 export const CardList = ({ card, removeCardFromList }) => {
-    return(
-        <li className={styles.card}>
-            <div className={styles.card_left}>
-                <h3 className={styles.description}>{card.description}</h3>
-                <span className={styles.typeValue}>{card.typeValue}</span>            
-            </div>
-            <div className={styles.card_right}>
-                <p className={styles.money}>R${card.money}</p>
-                <button className='card-delet_button' onClick={() => removeCardFromList(card.id)}>Excluir</button>
-            </div>
-        </li>
-    );
+  return (
+    <StyledCardList>
+      <div className={card.typeValue}>
+        <div className='card_left'>
+          <h3 className='description'>{card.description}</h3>
+          <span className='typeValue'>{card.typeValue}</span>
+        </div>
+        <div className='card_right'>
+          <p className='money'>R${card.money}</p>
+          <button
+            className='card-delet_button'
+            onClick={() => removeCardFromList(card.id)}
+          >
+            Excluir
+          </button>
+        </div>
+      </div>
+    </StyledCardList>
+  );
 };
